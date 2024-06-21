@@ -38,3 +38,14 @@
 exports.maxObjectSize = 1000 * 1000 * 1000;
 exports.maxObjectCount = 32768 * 2;
 ```
+
+## 本地启动步骤
+node:14.17.0
+
+- npm install -g @vue/cli
+- pnpm i -g @vue/cli-service
+- npm install
+- npm install -E sqlite3@5.1.6
+- npm install --save dns mock-aws-s3 nock
+- npm install cheerio@^1.0.0-rc.3
+- pnpm i -D @types/webpack-env

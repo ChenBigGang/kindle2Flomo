@@ -1,64 +1,66 @@
 module.exports = {
-  publicPath: './',
+  publicPath: "/Send2flomo",
+  outputDir: 'Send2flomo',
 
   // 第三方插件配置
   pluginOptions: {
     electronBuilder: {
       publish: {
-          provider: 'github',
-          repo: 'kindle2Flomo', // git仓库
-          owner: 'Tit1e', // 拥有者
-          releaseType: 'release',
-          vPrefixedTagName: false,
-          publishAutoUpdate: true // 发布自动更新（需要配置GH_TOKEN）。 默认true
+        provider: "github",
+        repo: "kindle2Flomo", // git仓库
+        owner: "Tit1e", // 拥有者
+        releaseType: "release",
+        vPrefixedTagName: false,
+        publishAutoUpdate: true, // 发布自动更新（需要配置GH_TOKEN）。 默认true
       },
       electronDownload: {
-        mirror: "https://npm.taobao.org/mirrors/electron/"
+        mirror: "https://npm.taobao.org/mirrors/electron/",
       },
-      productName: 'SendToflomo',
+      productName: "SendToflomo",
       nodeIntegration: true,
       builderOptions: {
         // 设置打包之后的应用名称
-        productName: 'Send2flomo',
+        productName: "Send2flomo",
         win: {
-          icon: 'public/icons/AppIcon.png',
+          icon: "public/icons/AppIcon.png",
           // 图标路径 windows系统中icon需要256*256的ico格式图片，更换应用图标亦在此处
           target: [
             {
               // 打包成一个独立的 exe 安装程序
-              target: 'nsis',
+              target: "nsis",
               // 这个意思是打出来32 bit + 64 bit的包，但是要注意：这样打包出来的安装包体积比较大
               arch: [
-                'x64'
+                "x64",
                 // 'ia32'
-              ]
-            }
-          ]
+              ],
+            },
+          ],
         },
         dmg: {
           contents: [
             {
               x: 410,
               y: 150,
-              type: 'link',
-              path: '/Applications'
+              type: "link",
+              path: "/Applications",
             },
             {
               x: 130,
               y: 150,
-              type: 'file'
-            }
-          ]
+              type: "file",
+            },
+          ],
         },
         linux: {
           // 设置linux的图标
-          icon: 'public/icons/AppIcon.png',
-          target: 'AppImage'
+          icon: "public/icons/AppIcon.png",
+          target: "AppImage",
         },
         mac: {
-          icon: 'public/icons/AppIcon.icns'
+          target: "dmg",
+          icon: "public/icons/AppIcon.icns",
         },
-        files: ['**/*'],
+        files: ["**/*"],
         asar: false,
         nsis: {
           // 是否一键安装，建议为 false，可以让用户点击下一步、下一步、下一步的形式安装程序
@@ -69,38 +71,38 @@ module.exports = {
           // 允许修改安装目录，建议为 true，是否允许用户改变安装目录，默认是不允许
           allowToChangeInstallationDirectory: true,
           // 安装图标
-          installerIcon: 'resources/ico/icon.ico',
+          installerIcon: "public/icons/icon.ico",
           // 卸载图标
-          uninstallerIcon: 'resources/ico/icon.ico',
+          uninstallerIcon: "public/icons/icon.ico",
           // 安装时头部图标
-          installerHeaderIcon: 'resources/ico/icon.ico',
+          installerHeaderIcon: "public/icons/icon.ico",
           // 创建桌面图标
           createDesktopShortcut: true,
           // 创建开始菜单图标
-          createStartMenuShortcut: true
-        }
+          createStartMenuShortcut: true,
+        },
       },
-      chainWebpackMainProcess: config => {
-        config.plugin('define').tap(args => {
-          args[0].IS_ELECTRON = true
-          return args
-        })
+      chainWebpackMainProcess: (config) => {
+        config.plugin("define").tap((args) => {
+          args[0].IS_ELECTRON = true;
+          return args;
+        });
       },
-      chainWebpackRendererProcess: config => {
-        config.plugin('define').tap(args => {
-          args[0].IS_ELECTRON = true
-          return args
-        })
-      }
-    }
+      chainWebpackRendererProcess: (config) => {
+        config.plugin("define").tap((args) => {
+          args[0].IS_ELECTRON = true;
+          return args;
+        });
+      },
+    },
   },
 
-  chainWebpack: config => {
-    config.plugin('html').tap(args => {
-      args[0].title = 'Send2flomo'
-      return args
-    })
+  chainWebpack: (config) => {
+    config.plugin("html").tap((args) => {
+      args[0].title = "Send2flomo";
+      return args;
+    });
   },
 
-  productionSourceMap: false
-}
+  productionSourceMap: false,
+};

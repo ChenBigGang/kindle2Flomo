@@ -15,6 +15,7 @@ async function init(sortList = [], sort = true) {
   if (sort && sortList.length) {
     for (let i = 0; i < sortList.length; i++) {
       const item = sortList[i]
+      // 将该书找到，并放置到开头。
       const index = result.findIndex(i => i.title === item)
       result.unshift(result.splice(index, 1)[0])
     }
